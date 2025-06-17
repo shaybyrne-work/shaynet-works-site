@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>ShayNet.Works | Contact</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="description" content="Contact ShayNet.Works for small business IT support. Secure your systems, get advice, or request on-site or remote help." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body class="is-preload">
+
+  <!-- Header -->
+  <section id="header">
+    <div class="inner">
+      <h1>Contact ShayNet.Works</h1>
+      <p>Need IT help for your business? Let’s chat.</p>
+      <ul class="actions special">
+        <li><a href="index.html" class="button">Back to Home</a></li>
+        <li><a href="services.html" class="button">View Services</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="main style1">
+    <div class="container">
+      <header class="major">
+        <h2>Get in Touch</h2>
+        <p>Use the form below to reach out. Your information is never shared.</p>
+      </header>
+
+      <form method="POST" action="https://shay-contact.shay-e7d.workers.dev/">
+        <div class="row gtr-uniform gtr-50">
+          <div class="col-6 col-12-xsmall">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Your Name" required />
+          </div>
+          <div class="col-6 col-12-xsmall">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Your Email" required />
+          </div>
+          <div class="col-6 col-12-xsmall">
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" id="phone" class="input" placeholder="Cell Number" />
+          </div>
+          <div class="col-12">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" placeholder="Your Message" rows="6" required></textarea>
+          </div>
+          <!-- Honeypot -->
+          <div style="display: none;">
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+          </div>
+          <div class="col-12">
+            <input type="checkbox" id="consent" name="consent" required />
+            <label for="consent">I consent to be contacted via email regarding my inquiry.</label>
+          </div>
+          <div class="col-12">
+            <ul class="actions">
+              <li><input type="submit" value="Send Message" class="primary" id="submit-btn" disabled /></li>
+              <li><input type="reset" value="Reset" /></li>
+              <input type="hidden" name="client_info" id="client_info" />
+            </ul>
+          </div>
+          <div class="cf-turnstile"
+               data-sitekey="0x4AAAAAABhWwcxRh9NXKxlt"
+               data-callback="enableSubmit"
+               data-theme="light"></div>
+        </div>
+      </form>
+
+      <footer class="major">
+        <p>If you'd rather, connect directly via <a href="https://linkedin.shaybyrne.ca" target="_blank">LinkedIn</a>.</p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="main style2" style="padding: 2em 0; background: #f7f7f7; color: #222;">
+    <div class="container" style="text-align: center;">
+      <h3 style="margin-bottom: 0.5em;">What Clients Say</h3>
+      <blockquote style="font-style: italic; margin: 0 auto; max-width: 700px;">
+        “Shay completely overhauled my Microsoft 365 setup — what used to be a frustrating mess is now streamlined, secure, and easy to manage. He also fixed my home network, which was a constant headache. I finally feel confident that my business tools are working the way they should. Clear, honest, and incredibly knowledgeable.”
+      </blockquote>
+      <p style="margin-top: 0.5em; font-weight: bold;">— Bryan, Home Builder, Muskoka</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section id="footer">
+    <ul class="icons">
+      <li><a href="https://linkedin.shaybyrne.ca" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+    </ul>
+    <p style="text-align: center;">&copy; 2025 Shay Byrne. All rights reserved.</p>
+  </section>
+
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Redirect / Confirmation + Turnstile control -->
+ <script>
+  const form = document.querySelector("form");
+  const confirmationContainer = document.createElement("div");
+  confirmationContainer.id = "confirmation-message";
+  confirmationContainer.style.marginTop = "1em";
+  confirmationContainer.style.fontWeight = "bold";
+  confirmationContainer.style.textAlign = "center";
+
+  form.after(confirmationContainer);
+
+  // 👉 Add browser info to hidden field
+  const clientInfoField = document.getElementById("client_info");
+  const ua = navigator.userAgent;
+  const res = `${window.screen.width}x${window.screen.height}`;
+  clientInfoField.value = `User-Agent: ${ua}\nResolution: ${res}`;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    confirmationContainer.textContent = "";
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        confirmationContainer.style.color = "green";
+        confirmationContainer.textContent = "Thanks! Shay will be in contact soon.";
+        form.reset();
+      } else {
+        confirmationContainer.style.color = "red";
+        confirmationContainer.textContent = "Oops — something went wrong. Please try again.";
+      }
+    } catch (error) {
+      confirmationContainer.style.color = "red";
+      confirmationContainer.textContent = "Error sending message. Please check your internet connection.";
+    }
+  });
+
+  function enableSubmit() {
+    const submitBtn = document.querySelector('input[type="submit"]');
+    if (submitBtn) submitBtn.disabled = false;
+  }
+</script>
+</body>
+</html>
