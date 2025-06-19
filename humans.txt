@@ -1,0 +1,13 @@
+/* TEAM */
+Developer: Shay Byrne
+Site: https://shaynet.works
+GitHub: https://github.shaybyrne.ca
+BlueSky: https://bluesky.shaynet.works
+
+/* SITE */
+Last updated: 2025-06-17
+Standards: HTML5, CSS3
+Tools: GitHub Pages, Cloudflare, VS Code
+
+/* THANKS */
+Powered by Coffee, Curiosity, and Home Automation.
