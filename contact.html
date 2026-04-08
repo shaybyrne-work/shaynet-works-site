@@ -150,7 +150,7 @@
       </a>
     </li>
   </ul>
-  <p style="text-align: center; margin-top: 1em;">&copy; 2025 Shay Byrne. All rights reserved. | <a href="contact.html">Contact</a></p>
+  <p style="text-align: center; margin-top: 1em;">&copy; <span id="copy-year"></span> Shay Byrne. All rights reserved. | <a href="contact.html">Contact</a></p>
 </section>
 
 
@@ -208,6 +208,9 @@
     const submitBtn = document.querySelector('input[type="submit"]');
     if (submitBtn) submitBtn.disabled = false;
   }
+</script>
+  <script>
+  document.getElementById('copy-year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
