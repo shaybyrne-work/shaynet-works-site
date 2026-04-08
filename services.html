@@ -249,7 +249,7 @@
       </a>
     </li>
   </ul>
-  <p style="text-align: center; margin-top: 1em;">&copy; 2025 Shay Byrne. All rights reserved. | <a href="contact.html">Contact</a></p>
+  <p style="text-align: center; margin-top: 1em;">&copy; <span id="copy-year"></span> Shay Byrne. All rights reserved. | <a href="contact.html">Contact</a></p>
 </section>
 
 <script src="assets/js/jquery.min.js"></script>
@@ -259,4 +259,7 @@
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
+  <script>
+  document.getElementById('copy-year').textContent = new Date().getFullYear();
+</script>
 </html>
